@@ -53,7 +53,7 @@ export const Sidebar = () => {
       } bg-gradient-to-r from-[#665256] from-10% via-[#4a3c43] via-30% to-[#251b27] to-90% h-screen p-5 pt-8 relative duration-300`}
     >
     
-      <span className={`material-symbols-outlined absolute cursor-pointer -right-3 top-9 w-7 bg-[#665256] 
+      <span className={`material-symbols-outlined absolute z-10 cursor-pointer -right-3 top-9 w-7 bg-[#665256] 
       text-[#251b27] border-[#857e82] border-2 rounded-full  ${!open && "rotate-180"}`}
            onClick={() => setOpen(!open)}
            >
