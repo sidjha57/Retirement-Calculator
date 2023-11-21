@@ -1,12 +1,12 @@
 body {
   margin: 0;
   padding: 0;
+  color: #5f5157;
 }
 
 main {
   flex: 1;
   overflow-y: auto;
-  padding: 1rem;
   background-color: #d2d3cc;
 }
 
