@@ -50,7 +50,7 @@ export const Sidebar = () => {
     <div
       className={` ${
         open ? "w-72" : "w-20 "
-      } bg-gradient-to-r from-[#665256] from-10% via-[#4a3c43] via-30% to-[#251b27] to-90% h-screen p-5 pt-8 relative duration-300`}
+      } bg-gradient-to-r from-[#665256] from-10% via-[#4a3c43] via-30% to-[#251b27] to-90%  p-5 pt-8 relative duration-300`}
     >
     
       <span className={`material-symbols-outlined absolute z-10 cursor-pointer -right-3 top-9 w-7 bg-[#665256] 

@@ -1,4 +1,4 @@
-import { RetirementSummaryProps } from "../types/userDefinedTypes";
+import { RetirementSummaryPropsType } from "../types/userDefinedTypes";
 
 export const RetirementSummary = ({
   headline,
@@ -7,7 +7,7 @@ export const RetirementSummary = ({
   retirementFundPerMonth,
   pensionPot,
   monthlyContribution,
-}: RetirementSummaryProps) => {
+}: RetirementSummaryPropsType) => {
 
   return (
     <div className="grid grid-flow-row gap-4">

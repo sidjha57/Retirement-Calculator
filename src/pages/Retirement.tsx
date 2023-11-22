@@ -16,7 +16,7 @@ export const Retirement = () => {
         <div className="bg-[#c4bfb2] h-[1px]"></div>
         {/* The calculator */}
         <div className="bg-[#e1ddd3] h-100 p-10">
-           <RetirementCalculator />
+           <RetirementCalculator currencySymbol={currencySymbol}/>
         </div>
     </main>
   )

@@ -41,9 +41,7 @@ const Header = () => {
           />
         </div>
       </div>
-      <div className="bg-[#c4bfb2] h-[1px]">
-
-      </div>
+      <div className="bg-[#c4bfb2] h-[1px]"></div>
     </header>
   );
 };
