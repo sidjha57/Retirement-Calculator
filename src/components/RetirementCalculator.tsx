@@ -1,8 +1,11 @@
 import React, { useState } from "react";
 import RetirementCalculatorForm from "./RetirementCalculatorForm";
 import { RetirementCalculatorFormPropsType } from "../types/userDefinedTypes";
+import BarChart from "./BarChart";
 
-export const RetirementCalculator = ({ currencySymbol }: RetirementCalculatorFormPropsType) => {
+export const RetirementCalculator = ({
+  currencySymbol,
+}: RetirementCalculatorFormPropsType) => {
   const [formData, setFormData] = useState(/* Initial form data here */);
 
   const handleFormSubmit = (e: React.FormEvent) => {
@@ -34,7 +37,7 @@ export const RetirementCalculator = ({ currencySymbol }: RetirementCalculatorFor
       </div>
       <div className="bg-[#c4bfb2] h-[2px]"></div>
 
-      <div className="p-8 grid grid-cols-2 gap-1">
+      <div className="p-8 grid grid-cols-2 gap-2 lg:gap-16 md:gap-10 sm:gap-4">
         <div>
           {/* form */}
           <RetirementCalculatorForm
@@ -43,7 +46,22 @@ export const RetirementCalculator = ({ currencySymbol }: RetirementCalculatorFor
             // setFormData={setFormData}
           />
         </div>
-        <div>{/* visualize */}</div>
+        <div className="">
+          {/* visualize */}
+          <div>
+            <h1 className="text-2xl text-center py-2">
+              32 years To Retirement
+            </h1>
+            <h3 className="text-[10px]  pb-5 text-center">
+              384 Paydays Left Until Retirement
+            </h3>
+            <div className="bg-[#c4bfb2] h-[1px] max-w-full"></div>
+          </div>
+
+          <div className="self-end">
+            <BarChart height1={1200} height2={798} />
+          </div>
+        </div>
       </div>
     </div>
   );
