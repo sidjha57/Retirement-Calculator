@@ -1,16 +1,20 @@
+import React from 'react';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
 import Footer from './components/Footer';
 import Header from './components/Header';
 import Home from './pages/Home';
-import { createBrowserRouter, RouterProvider, Outlet } from "react-router-dom";
-import { Sidebar } from './components/Sidebar';
-import { Retirement } from './pages/Retirement';
-import { NotFound } from './pages/NotFound';
-import "./App.css";
+import './App.css';
+import NotFound from './pages/NotFound';
+import Retirement from './pages/Retirement';
+import Sidebar from './components/Sidebar';
 
+/**
+ * Component representing the overall layout of the application.
+ */
 const Layout = () => {
   return (
-    <div className='flex'>
-       <Sidebar />
+    <div className="flex">
+      <Sidebar />
       <div className="flex-1 flex flex-col min-h-screen">
         <Header />
         <Outlet />
@@ -20,31 +24,35 @@ const Layout = () => {
   );
 };
 
+// Define the application's router configuration
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Layout />,
     children: [
       {
-        path: "*",
-        element: <NotFound />
+        path: '*',
+        element: <NotFound />,
       },
       {
         index: true,
         element: <Home />,
       },
       {
-        path:"/retirement-plan",
-        element:<Retirement/>
-      }
+        path: '/retirement-plan',
+        element: <Retirement />,
+      },
     ],
-  }
+  },
 ]);
 
+/**
+ * Main component representing the entire application.
+ */
 function App() {
   return (
     <div className="app">
-        <RouterProvider router={router} />
+      <RouterProvider router={router} />
     </div>
   );
 }

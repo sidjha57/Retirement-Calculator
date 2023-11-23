@@ -1,40 +1,23 @@
-import React, { ChangeEvent, useState } from 'react';
 import Slider from '@mui/material/Slider';
-import { RetirementCalculatorFormDataType, YearsLeftToRetirementType } from '../types/userDefinedTypes';
+import { AgeRangeSliderPropsType, RetirementFormReducerAction } from '../types/userDefinedTypes';
 
-const RangeSlider = ({ setFormData }: any) => {
-  const initialYearsLeftToRetirement: YearsLeftToRetirementType = {
-    currentAge: 25,
-    retirementAge: 60,
+const AgeRangeSlider = ({ yearsLeftToRetirement, dispatch }: AgeRangeSliderPropsType) => {
+  
+
+  const handleAgeChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> ) => {
+    dispatch({
+      type: RetirementFormReducerAction.UPDATE_AGE,
+      payload: { fieldName: e.target.name, age: Number.parseInt(e.target.value)}, 
+    })
   };
 
-  const [yearsLeftToRetirement, setYearsLeftToRetirement] = useState<YearsLeftToRetirementType>(
-    initialYearsLeftToRetirement
-  );
-
-  const handleInputChange = (event: ChangeEvent<HTMLInputElement>, field: keyof YearsLeftToRetirementType) => {
-    const newValue = parseFloat(event.target.value);
-    if (!isNaN(newValue)) {
-      const updatedValues = { ...yearsLeftToRetirement, [field]: newValue };
-
-      setFormData((prevData: RetirementCalculatorFormDataType) => ({
-        ...prevData,
-        yearsLeftToRetirement: updatedValues,
-      }));
-
-      setYearsLeftToRetirement(updatedValues);
-    }
-  };
-
-  const handleChange = (event: Event, newValue: number | number[]) => {
-    const [currentAge, retirementAge] = newValue as number[];
-
-    setFormData((prevData: RetirementCalculatorFormDataType) => ({
-      ...prevData,
-      yearsLeftToRetirement: { currentAge, retirementAge },
-    }));
-
-    setYearsLeftToRetirement({ currentAge, retirementAge });
+  const handleAgeRangeChange = (e: Event, newValue: number | number[]) => {
+    console.log(e);
+    console.log(newValue);
+    dispatch({
+      type: RetirementFormReducerAction.UPDATE_DOUBLE_SLIDER,
+      payload: newValue 
+    });
   };
 
   return (
@@ -43,20 +26,21 @@ const RangeSlider = ({ setFormData }: any) => {
         <div className="grid justify-self-start">
           <input
             id="currentAge"
+            name="currentAge"
             value={yearsLeftToRetirement.currentAge}
-            onChange={(e) => handleInputChange(e, 'currentAge')}
+            onChange={handleAgeChange}
             type="number"
             min="0"
-            max="130"
+            max="80"
             className="w-14 p-1 border rounded"
           />
         </div>
         <div className="col-start-2 col-span-3">
           <Slider
             min={18}
-            max={130}
+            max={80}
             value={[yearsLeftToRetirement.currentAge, yearsLeftToRetirement.retirementAge]}
-            onChange={handleChange}
+            onChange={handleAgeRangeChange}
             valueLabelDisplay="auto"
             sx={{
               '& .MuiSlider-thumb': {
@@ -71,11 +55,12 @@ const RangeSlider = ({ setFormData }: any) => {
         <div className="grid justify-self-end">
           <input
             id="retirementAge"
+            name="retirementAge"
             value={yearsLeftToRetirement.retirementAge}
-            onChange={(e) => handleInputChange(e, 'retirementAge')}
+            onChange={handleAgeChange}
             type="number"
             min="18"
-            max="130"
+            max="80"
             className="w-14 p-1 border rounded"
           />
         </div>
@@ -92,4 +77,4 @@ const RangeSlider = ({ setFormData }: any) => {
   );
 };
 
-export default RangeSlider;
+export default AgeRangeSlider;

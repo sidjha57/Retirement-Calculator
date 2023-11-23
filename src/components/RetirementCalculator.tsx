@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import RetirementCalculatorForm from "./RetirementCalculatorForm";
 import { RetirementCalculatorFormPropsType } from "../types/userDefinedTypes";
 import BarChart from "./BarChart";
@@ -6,8 +6,8 @@ import { CalculateDaysFromYears } from "../utils/getNumberOfDays";
 
 export const RetirementCalculator = ({
   currencySymbol,
-  formData,
-  setFormData,
+  retirementFormState: formData,
+  dispatch: setFormData,
   calculatedSummary,
   setCalculatedSummary,
 }: RetirementCalculatorFormPropsType ) => {
@@ -33,7 +33,6 @@ export const RetirementCalculator = ({
           <button
             type="button"
             className="px-8 py-2 text-xs rounded-full border border-[#251b27] text-[#251b27] hover:bg-[#251b27] hover:text-white"
-            // onClick={() => setFormData(/* Reset form data if needed */)}
           >
             Cancel
           </button>
@@ -46,8 +45,8 @@ export const RetirementCalculator = ({
           {/* form */}
           <RetirementCalculatorForm
             currencySymbol={currencySymbol}
-            formData={formData}
-            setFormData={setFormData}
+            retirementFormState={formData}
+            dispatch={setFormData}
             calculatedSummary={calculatedSummary}
             setCalculatedSummary={setCalculatedSummary}
           />

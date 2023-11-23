@@ -1,48 +1,46 @@
-import React, { useState } from "react";
-import RangeSlider from "./RangeSlider";
+import React from "react";
+import AgeRangeSlider from "./RangeSlider";
 import { Slider } from "@mui/material";
 import {
-  RetirementCalculatorFormDataType,
   RetirementCalculatorFormPropsType,
+  RetirementFormReducerAction,
 } from "../types/userDefinedTypes";
 
 const RetirementCalculatorForm = ({
   currencySymbol,
-  formData,
-  setFormData,
-  calculatedSummary,
-  setCalculatedSummary
+  retirementFormState,
+  dispatch,
 }: RetirementCalculatorFormPropsType) => {
   
-  const handleChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  const handleAmountChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> 
   ) => {
-    const { name, value } = e.target;
-
-    setFormData((prevData: RetirementCalculatorFormDataType) => ({
-      ...prevData,
-      [name]: value,
-    }));
+    e.preventDefault();
+    dispatch({
+      type: RetirementFormReducerAction.UPDATE_AMOUNT,
+      payload: {fieldName: e.target.name, amount: e.target.value}
+    })   
   };
 
-  const handleSliderChange = (_event: Event, newValue: number | number[]) => {
-    setFormData((prevData: RetirementCalculatorFormDataType) => ({
-      ...prevData,
-      monthlyPensionContribution: Array.isArray(newValue)
-        ? newValue[0]
-        : newValue,
-    }));
+  const handleSliderChange = (e: Event, newValue: number | number[]) => {
+    console.log(e);
+    console.log(newValue);
+    dispatch({
+      type: RetirementFormReducerAction.UPDATE_SLIDER,
+      payload: newValue 
+    });
   };
-
+   
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    console.log(formData);
+    console.log(retirementFormState);
     // You can perform any further actions with the form data here
   };
 
   return (
-    <form className="" onSubmit={handleSubmit}>
-      <div className="mb-4">
+    <form className="space-y-4" onSubmit={handleSubmit}>
+      {/* Name input */}
+      <div>
         <label className="block text-sm mb-1" htmlFor="name">
           Name
         </label>
@@ -50,14 +48,15 @@ const RetirementCalculatorForm = ({
           type="text"
           id="name"
           name="name"
-          value={formData.name}
-          onChange={handleChange}
+          value={retirementFormState.name}
+          onChange={(e) => dispatch({type: RetirementFormReducerAction.UPDATE_NAME, payload: e.target.value})}
           className="w-full border p-2 rounded-md"
         />
       </div>
-      <div className="bg-[#c4bfb2] h-[1px]"></div>
+      <hr className="bg-[#c4bfb2] h-[1px]" />
 
-      <div className="my-4 ">
+      {/* Desired monthly income at retirement input */}
+      <div>
         <label className="block text-sm mb-1" htmlFor="monthlyIncomeAfterRetirement">
           Desired monthly income at retirement
         </label>
@@ -66,11 +65,11 @@ const RetirementCalculatorForm = ({
             {currencySymbol}
           </span>
           <input
-            type="number"
+            type="text"
             id="monthlyIncomeAfterRetirement"
             name="monthlyIncomeAfterRetirement"
-            value={formData.monthlyIncomeAfterRetirement}
-            onChange={handleChange}
+            value={new Intl.NumberFormat('en-IN').format(retirementFormState.monthlyIncomeAfterRetirement)}
+            onChange={handleAmountChange}
             data-type="currency"
             className="w-full border p-2 rounded-md pl-8"
           />
@@ -79,30 +78,31 @@ const RetirementCalculatorForm = ({
           Many people aim for about two-thirds of their current income
         </label>
       </div>
-      <div className="bg-[#c4bfb2] h-[1px]"></div>
+      <hr className="bg-[#c4bfb2] h-[1px]" />
 
-      <div className="my-4">
+      {/* Your age slider */}
+      <div>
         <label className="block text-sm mb-1" htmlFor="yearsLeftToRetirement">
           Your age
         </label>
-        <RangeSlider setFormData={setFormData}/>
+        <AgeRangeSlider yearsLeftToRetirement={retirementFormState.yearsLeftToRetirement} dispatch={dispatch} />
       </div>
-      <div className="bg-[#c4bfb2] h-[1px]"></div>
+      <hr className="bg-[#c4bfb2] h-[1px]" />
 
-      <div className="my-4">
+      {/* Monthly pension contribution input and slider */}
+      <div>
         <label className="block text-sm mb-1" htmlFor="monthlyPensionContribution">
           Monthly pension contribution
         </label>
         <div className="grid grid-cols-8 gap-4">
-          <div className="relative col-span-2">
+          <div className="relative col-span-3">
             <input
-              type="number"
+              type="text"
               id="monthlyPensionContribution"
               name="monthlyPensionContribution"
-              min="0"
-              max="1000"
-              value={formData.monthlyPensionContribution}
-              onChange={handleChange}
+              value={new Intl.NumberFormat('en-IN').format(retirementFormState.monthlyPensionContribution)}
+              onChange={handleAmountChange}
+              data-type="currency"
               className="w-full rounded-md p-1 pl-5"
             />
             <span className="absolute inset-y-0 left-0 pl-1 flex items-center">
@@ -110,15 +110,16 @@ const RetirementCalculatorForm = ({
             </span>
           </div>
 
-          <div className="col-start-3 col-span-6 flex items-center">
+          <div className="col-start-4 col-span-6 flex items-center">
             <Slider
               id="monthlyPensionContribution"
+              key="monthlyPensionContribution"
               name="monthlyPensionContribution"
-              value={formData.monthlyPensionContribution}
-              onChange={(e, value) => handleSliderChange(e, value)}
+              value={retirementFormState.monthlyPensionContribution}
+              onChange={handleSliderChange}
               valueLabelDisplay="auto"
               min={0}
-              max={1000}
+              max={10000}
               sx={{
                 "& .MuiSlider-thumb": {
                   backgroundColor: "white",
@@ -131,22 +132,20 @@ const RetirementCalculatorForm = ({
           </div>
         </div>
       </div>
-      <div className="bg-[#c4bfb2] h-[1px]"></div>
+      <hr className="bg-[#c4bfb2] h-[1px]" />
 
-      <div className="my-4">
-        <label className="block text-sm mb-1" htmlFor="currentRetirementSavings">
-          Current retirement savings
-        </label>
+      {/* Current retirement savings input */}
+      <div>
         <div className="relative">
           <span className="absolute inset-y-0 left-0 pl-2 flex items-center">
             {currencySymbol}
           </span>
           <input
-            type="number"
+            type="text"
             id="currentRetirementSavings"
             name="currentRetirementSavings"
-            value={formData.currentRetirementSavings}
-            onChange={handleChange}
+            value={new Intl.NumberFormat('en-IN').format(retirementFormState.currentRetirementSavings)}
+            onChange={handleAmountChange}
             data-type="currency"
             className="w-full border p-2 rounded-md pl-8"
           />
