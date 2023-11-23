@@ -1,35 +1,60 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from './assets/vite.svg'
-import './App.css'
+import React from 'react';
+import { createBrowserRouter, RouterProvider, Outlet } from 'react-router-dom';
+import Footer from './components/Footer';
+import Header from './components/Header';
+import Home from './pages/Home';
+import './App.css';
+import NotFound from './pages/NotFound';
+import Retirement from './pages/Retirement';
+import Sidebar from './components/Sidebar';
 
-function App () {
-  const [count, setCount] = useState(0)
-
+/**
+ * Component representing the overall layout of the application.
+ */
+const Layout = () => {
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src={viteLogo} className="logo h-10" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+    <div className="flex">
+      <Sidebar />
+      <div className="flex-1 flex flex-col min-h-screen">
+        <Header />
+        <Outlet />
+        <Footer />
       </div>
-      <h1 className='h-10'>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => { setCount((count) => count + 1) }}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    </div>
+  );
+};
+
+// Define the application's router configuration
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <Layout />,
+    children: [
+      {
+        path: '*',
+        element: <NotFound />,
+      },
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: '/retirement-plan',
+        element: <Retirement />,
+      },
+    ],
+  },
+]);
+
+/**
+ * Main component representing the entire application.
+ */
+function App() {
+  return (
+    <div className="app">
+      <RouterProvider router={router} />
+    </div>
+  );
 }
 
-export default App
+export default App;
