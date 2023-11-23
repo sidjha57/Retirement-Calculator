@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { initialsFromName } from "../utils/getNameInitials";
+import { InitialsFromName } from "../utils/getNameInitials";
 export const Sidebar = () => {
   const [open, setOpen] = useState(true);
   const Menus = [
@@ -45,7 +45,7 @@ export const Sidebar = () => {
     name: "John Smith",
     profile: "Financial Advisor",
   };
-  const initials = initialsFromName(user.name);
+  const initials = InitialsFromName(user.name);
   return (
     <div
       className={` ${

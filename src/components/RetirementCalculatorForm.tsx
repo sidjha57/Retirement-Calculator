@@ -8,28 +8,25 @@ import {
 
 const RetirementCalculatorForm = ({
   currencySymbol,
+  formData,
+  setFormData,
+  calculatedSummary,
+  setCalculatedSummary
 }: RetirementCalculatorFormPropsType) => {
-  const [formData, setFormData] = useState<RetirementCalculatorFormDataType>({
-    name: "",
-    yearsLeftToRetirement: [0, 130],
-    monthlyPensionContribution: 400,
-    monthlyIncomeAfterRetirement: 2000,
-    currentRetirementSavings: 400000,
-  });
-
+  
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
 
-    setFormData((prevData) => ({
+    setFormData((prevData: RetirementCalculatorFormDataType) => ({
       ...prevData,
       [name]: value,
     }));
   };
 
   const handleSliderChange = (_event: Event, newValue: number | number[]) => {
-    setFormData((prevData) => ({
+    setFormData((prevData: RetirementCalculatorFormDataType) => ({
       ...prevData,
       monthlyPensionContribution: Array.isArray(newValue)
         ? newValue[0]
@@ -88,7 +85,7 @@ const RetirementCalculatorForm = ({
         <label className="block text-sm mb-1" htmlFor="yearsLeftToRetirement">
           Your age
         </label>
-        <RangeSlider />
+        <RangeSlider setFormData={setFormData}/>
       </div>
       <div className="bg-[#c4bfb2] h-[1px]"></div>
 

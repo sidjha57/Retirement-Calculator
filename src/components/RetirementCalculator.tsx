@@ -2,11 +2,15 @@ import React, { useState } from "react";
 import RetirementCalculatorForm from "./RetirementCalculatorForm";
 import { RetirementCalculatorFormPropsType } from "../types/userDefinedTypes";
 import BarChart from "./BarChart";
+import { CalculateDaysFromYears } from "../utils/getNumberOfDays";
 
 export const RetirementCalculator = ({
   currencySymbol,
-}: RetirementCalculatorFormPropsType) => {
-  const [formData, setFormData] = useState(/* Initial form data here */);
+  formData,
+  setFormData,
+  calculatedSummary,
+  setCalculatedSummary,
+}: RetirementCalculatorFormPropsType ) => {
 
   const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -42,24 +46,26 @@ export const RetirementCalculator = ({
           {/* form */}
           <RetirementCalculatorForm
             currencySymbol={currencySymbol}
-            // formData={formData}
-            // setFormData={setFormData}
+            formData={formData}
+            setFormData={setFormData}
+            calculatedSummary={calculatedSummary}
+            setCalculatedSummary={setCalculatedSummary}
           />
         </div>
         <div className="">
           {/* visualize */}
           <div>
             <h1 className="text-2xl text-center py-2">
-              32 years To Retirement
+              {formData.yearsLeftToRetirement.retirementAge - formData.yearsLeftToRetirement.currentAge} years To Retirement
             </h1>
             <h3 className="text-[10px]  pb-5 text-center">
-              384 Paydays Left Until Retirement
+              {CalculateDaysFromYears(formData.yearsLeftToRetirement.retirementAge - formData.yearsLeftToRetirement.currentAge)} Paydays Left Until Retirement
             </h3>
             <div className="bg-[#c4bfb2] h-[1px] max-w-full"></div>
           </div>
 
           <div className="self-end">
-            <BarChart height1={1200} height2={798} />
+            <BarChart currencySymbol={currencySymbol} height1={calculatedSummary.monthlyIncome.desired} height2={calculatedSummary.monthlyIncome.current} />
           </div>
         </div>
       </div>
