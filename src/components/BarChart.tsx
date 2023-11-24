@@ -1,5 +1,5 @@
-import React from "react";
-import { BarChartPropsType } from "../types/userDefinedTypes";
+import React from "react"
+import { BarChartPropsType } from "../types/userDefinedTypes"
 
 /**
  * BarChart component displays a two-bar chart with information.
@@ -8,7 +8,7 @@ import { BarChartPropsType } from "../types/userDefinedTypes";
  */
 const BarChart: React.FC<BarChartPropsType> = ({ currencySymbol, height1, height2 }) => {
   // Calculate the maximum height for percentage calculation
-  const maxHeight = Math.max(height1, height2);
+  const maxHeight = Math.max(height1, height2)
 
   /**
    * Calculate the percentage height for each bar.
@@ -16,8 +16,8 @@ const BarChart: React.FC<BarChartPropsType> = ({ currencySymbol, height1, height
    * @returns {string} - The percentage height as a string.
    */
   const calculatePercentage = (height: number): string => {
-    return (height / maxHeight) * 100 + "%";
-  };
+    return (height / maxHeight) * 100 + "%"
+  }
 
   return (
     <div className="h-[25rem] grid grid-cols-2 gap-8">
@@ -49,7 +49,7 @@ const BarChart: React.FC<BarChartPropsType> = ({ currencySymbol, height1, height
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default BarChart;
+export default BarChart

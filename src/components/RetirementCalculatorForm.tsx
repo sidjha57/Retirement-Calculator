@@ -1,10 +1,10 @@
-import React from "react";
-import AgeRangeSlider from "./RangeSlider";
-import { Slider } from "@mui/material";
+import React from "react"
+import AgeRangeSlider from "./RangeSlider"
+import { Slider } from "@mui/material"
 import {
   RetirementCalculatorFormPropsType,
   RetirementFormReducerAction,
-} from "../types/userDefinedTypes";
+} from "../types/userDefinedTypes"
 
 const RetirementCalculatorForm = ({
   currencySymbol,
@@ -15,27 +15,27 @@ const RetirementCalculatorForm = ({
   const handleAmountChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> 
   ) => {
-    e.preventDefault();
+    e.preventDefault()
     dispatch({
       type: RetirementFormReducerAction.UPDATE_AMOUNT,
       payload: {fieldName: e.target.name, amount: e.target.value}
     })   
-  };
+  }
 
   const handleSliderChange = (e: Event, newValue: number | number[]) => {
-    console.log(e);
-    console.log(newValue);
+    console.log(e)
+    console.log(newValue)
     dispatch({
       type: RetirementFormReducerAction.UPDATE_SLIDER,
       payload: newValue 
-    });
-  };
+    })
+  }
    
   const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    console.log(retirementFormState);
+    e.preventDefault()
+    console.log(retirementFormState)
     // You can perform any further actions with the form data here
-  };
+  }
 
   return (
     <form className="space-y-4" onSubmit={handleSubmit}>
@@ -49,7 +49,7 @@ const RetirementCalculatorForm = ({
           id="name"
           name="name"
           value={retirementFormState.name}
-          onChange={(e) => dispatch({type: RetirementFormReducerAction.UPDATE_NAME, payload: e.target.value})}
+          onChange={(e) => { dispatch({type: RetirementFormReducerAction.UPDATE_NAME, payload: e.target.value}) }}
           className="w-full border p-2 rounded-md"
         />
       </div>
@@ -152,7 +152,7 @@ const RetirementCalculatorForm = ({
         </div>
       </div>
     </form>
-  );
-};
+  )
+}
 
-export default RetirementCalculatorForm;
+export default RetirementCalculatorForm

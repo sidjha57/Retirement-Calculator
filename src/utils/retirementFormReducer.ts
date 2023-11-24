@@ -2,7 +2,7 @@ import {
     RetirementCalculatorFormDataType,
     RetirementFormActionType,
     RetirementFormReducerAction,
-  } from "../types/userDefinedTypes";
+  } from "../types/userDefinedTypes"
   
   /**
    * Initial state for the retirement form.
@@ -16,7 +16,7 @@ import {
     monthlyPensionContribution: 400,
     monthlyIncomeAfterRetirement: 2000,
     currentRetirementSavings: 40000,
-  };
+  }
   
   /**
    * Reducer function for handling state changes in the retirement form.
@@ -30,56 +30,56 @@ import {
   ): RetirementCalculatorFormDataType => {
     switch (action.type) {
       case RetirementFormReducerAction.UPDATE_DOUBLE_SLIDER: {
-        let currentAge: number, retirementAge: number;
+        let currentAge: number, retirementAge: number
   
         if (Array.isArray(action.payload)) {
-          [currentAge, retirementAge] = action.payload;
+          [currentAge, retirementAge] = action.payload
         } else {
           // Handle the case where action.payload is a single number
-          currentAge = state.yearsLeftToRetirement.currentAge;
-          retirementAge = state.yearsLeftToRetirement.retirementAge; // or provide a default value
+          currentAge = state.yearsLeftToRetirement.currentAge
+          retirementAge = state.yearsLeftToRetirement.retirementAge // or provide a default value
         }
   
         return {
           ...state,
           yearsLeftToRetirement: { currentAge, retirementAge },
-        };
+        }
       }
       case RetirementFormReducerAction.UPDATE_AGE: {
-        const { fieldName, age } = action.payload;
+        const { fieldName, age } = action.payload
         return {
           ...state,
           yearsLeftToRetirement: {
             ...state.yearsLeftToRetirement,
             [fieldName]: age,
           },
-        };
+        }
       }
       case RetirementFormReducerAction.UPDATE_SLIDER: {
         const monthlyPensionContribution = Array.isArray(action.payload)
           ? action.payload[0]
-          : action.payload;
+          : action.payload
   
         return {
           ...state,
           monthlyPensionContribution,
-        };
+        }
       }
       case RetirementFormReducerAction.UPDATE_NAME:
         return {
           ...state,
           name: action.payload,
-        };
+        }
       case RetirementFormReducerAction.UPDATE_AMOUNT: {
-        const { fieldName, amount } = action.payload;
-        const originalNumber = parseFloat(amount.replace(/,/g, ""));
+        const { fieldName, amount } = action.payload
+        const originalNumber = parseFloat(amount.replace(/,/g, ""))
         return {
           ...state,
           [fieldName]: originalNumber,
-        };
+        }
       }
       default:
-        return state;
+        return state
     }
-  };
+  }
   

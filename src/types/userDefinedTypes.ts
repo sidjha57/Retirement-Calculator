@@ -1,10 +1,10 @@
 /**
  * Represents the structure of the 'YearsLeftToRetirementType' data type.
  */
-export type YearsLeftToRetirementType = {
+export interface YearsLeftToRetirementType {
   currentAge: number;
   retirementAge: number;
-};
+}
 
 /**
  * Represents the structure of the 'RetirementMonthlyIncomeType' data type.
@@ -42,29 +42,29 @@ export interface RetirementCalculatedSummaryType {
 /**
  * Represents the structure of the 'RetirementCalculatorFormDataType' data type.
  */
-export type RetirementCalculatorFormDataType = {
+export interface RetirementCalculatorFormDataType {
   name: string;
   yearsLeftToRetirement: YearsLeftToRetirementType;
   monthlyPensionContribution: number;
   monthlyIncomeAfterRetirement: number;
   currentRetirementSavings: number;
-};
+}
 
 /**
  * Represents the properties expected by the RetirementCalculatorForm component.
  */
-export type RetirementCalculatorFormPropsType = {
+export interface RetirementCalculatorFormPropsType {
   currencySymbol: string;
   retirementFormState: RetirementCalculatorFormDataType;
   dispatch: React.Dispatch<RetirementFormActionType>;
   calculatedSummary: RetirementCalculatedSummaryType;
   setCalculatedSummary: React.Dispatch<React.SetStateAction<RetirementCalculatedSummaryType>>;
-};
+}
 
 /**
  * Represents the properties expected by the RetirementSummary component.
  */
-export type RetirementSummaryPropsType = {
+export interface RetirementSummaryPropsType {
   headline: string;
   headlineTextColor?: string;
   monthlyContributionRequired?: boolean;
@@ -72,7 +72,7 @@ export type RetirementSummaryPropsType = {
   retirementFundPerMonth: number;
   pensionPot: number;
   monthlyContribution: number;
-};
+}
 
 /**
  * Represents the properties expected by the BarChart component.

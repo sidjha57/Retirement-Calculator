@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 /**
  * Component to display when the requested page is not found.
@@ -18,7 +18,7 @@ const NotFound: React.FC = () => {
 
       </div>
     </main>
-  );
-};
+  )
+}
 
-export default NotFound;
+export default NotFound

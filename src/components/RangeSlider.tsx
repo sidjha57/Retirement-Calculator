@@ -1,5 +1,5 @@
-import Slider from '@mui/material/Slider';
-import { AgeRangeSliderPropsType, RetirementFormReducerAction } from '../types/userDefinedTypes';
+import Slider from '@mui/material/Slider'
+import { AgeRangeSliderPropsType, RetirementFormReducerAction } from '../types/userDefinedTypes'
 
 const AgeRangeSlider = ({ yearsLeftToRetirement, dispatch }: AgeRangeSliderPropsType) => {
   
@@ -9,16 +9,16 @@ const AgeRangeSlider = ({ yearsLeftToRetirement, dispatch }: AgeRangeSliderProps
       type: RetirementFormReducerAction.UPDATE_AGE,
       payload: { fieldName: e.target.name, age: Number.parseInt(e.target.value)}, 
     })
-  };
+  }
 
   const handleAgeRangeChange = (e: Event, newValue: number | number[]) => {
-    console.log(e);
-    console.log(newValue);
+    console.log(e)
+    console.log(newValue)
     dispatch({
       type: RetirementFormReducerAction.UPDATE_DOUBLE_SLIDER,
       payload: newValue 
-    });
-  };
+    })
+  }
 
   return (
     <div>
@@ -74,7 +74,7 @@ const AgeRangeSlider = ({ yearsLeftToRetirement, dispatch }: AgeRangeSliderProps
         </label>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default AgeRangeSlider;
+export default AgeRangeSlider

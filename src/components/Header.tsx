@@ -1,19 +1,19 @@
-import { useState } from "react";
+import { useState } from "react"
 
 /**
  * Header component for the application.
  * @returns {JSX.Element} The header component.
  */
 const Header = () => {
-  const [searchString, setSearchString] = useState<string>();
+  const [searchString, setSearchString] = useState<string>()
 
   /**
    * Handles the change in the search input.
    * @param {React.ChangeEvent<HTMLInputElement>} e - The change event.
    */
   const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchString(e.target.value);
-  };
+    setSearchString(e.target.value)
+  }
 
   return (
     <header className="sticky top-0 text-white bg-[#d9d8d2] ">
@@ -63,7 +63,7 @@ const Header = () => {
       {/* Divider Line */}
       <div className="bg-[#c4bfb2] h-[1px]"></div>
     </header>
-  );
-};
+  )
+}
 
-export default Header;
+export default Header

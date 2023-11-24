@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
-import { GetInitialsFromName } from "../utils/getNameInitials";
+import { useState } from "react"
+import { Link } from "react-router-dom"
+import { GetInitialsFromName } from "../utils/getNameInitials"
 
 const Sidebar = () => {
-  const [open, setOpen] = useState(true);
+  const [open, setOpen] = useState(true)
 
   const Menus = [
     { title: "Dashboard", icon: "home", link: "/home" },
@@ -41,13 +41,13 @@ const Sidebar = () => {
     },
     // ... (other menu items)
     { title: "Settings", src: "Setting", icon: "settings", gap: true },
-  ];
+  ]
 
   const user = {
     name: "John Smith",
     profile: "Financial Advisor",
-  };
-  const initials = GetInitialsFromName(user.name);
+  }
+  const initials = GetInitialsFromName(user.name)
 
   return (
     <div
@@ -60,12 +60,30 @@ const Sidebar = () => {
         text-[#251b27] border-[#857e82] border-2 rounded-full  ${
           !open && "rotate-180"
         }`}
-        onClick={() => setOpen(!open)}
+        onClick={() => {
+          setOpen(!open)
+        }}
       >
         chevron_right
       </span>
       <div className="flex gap-x-4 items-center">
-        {/* ... (user profile information) */}
+        <div
+          className={`bg-[#a9c3c0] -ml-1 text-white font-bold rounded-full cursor-pointer duration-500 ${
+            open && "rotate-[360deg]"
+          }`}
+        >
+          <span className="flex h-12 w-12 items-center justify-center text-[#251b27]">
+            {initials}
+          </span>
+        </div>
+        <div
+          className={`text-white origin-left duration-200 ${
+            !open && "scale-0"
+          }`}
+        >
+          <h1 className="font-medium text-xl">{user.name}</h1>
+          <h2 className="font-small text-xs">{user.profile}</h2>
+        </div>{" "}
       </div>
       <ul className="pt-4">
         {Menus.map((menu, index) => (
@@ -91,7 +109,7 @@ const Sidebar = () => {
         ))}
       </ul>
     </div>
-  );
-};
+  )
+}
 
-export default Sidebar;
+export default Sidebar

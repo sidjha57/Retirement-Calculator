@@ -1,5 +1,5 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react'
+import { Link } from 'react-router-dom'
 
 /**
  * Component representing the home page.
@@ -17,7 +17,7 @@ const Home: React.FC = () => {
         </Link>
       </div>
     </main>
-  );
-};
+  )
+}
 
-export default Home;
+export default Home

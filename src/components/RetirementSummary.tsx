@@ -1,4 +1,4 @@
-import { RetirementSummaryPropsType } from "../types/userDefinedTypes";
+import { RetirementSummaryPropsType } from "../types/userDefinedTypes"
 
 const RetirementSummary = ({
   headline,
@@ -33,7 +33,7 @@ const RetirementSummary = ({
         </div>
         <div>
           <p className="text-sm text-[#79736c]">
-            Monthly contribution {!!monthlyContributionRequired ? "required" : ""}
+            Monthly contribution {monthlyContributionRequired ? "required" : ""}
           </p>
           <span className="text-xl">
             {currency}{" "}
@@ -42,7 +42,7 @@ const RetirementSummary = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default RetirementSummary;
+export default RetirementSummary

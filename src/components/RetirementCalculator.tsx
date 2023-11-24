@@ -1,8 +1,8 @@
-import React from "react";
-import RetirementCalculatorForm from "./RetirementCalculatorForm";
-import { RetirementCalculatorFormPropsType } from "../types/userDefinedTypes";
-import BarChart from "./BarChart";
-import { CalculateDaysFromYears } from "../utils/getNumberOfDays";
+import React from "react"
+import RetirementCalculatorForm from "./RetirementCalculatorForm"
+import { RetirementCalculatorFormPropsType } from "../types/userDefinedTypes"
+import BarChart from "./BarChart"
+import { CalculateDaysFromYears } from "../utils/getNumberOfDays"
 
 export const RetirementCalculator = ({
   currencySymbol,
@@ -13,10 +13,10 @@ export const RetirementCalculator = ({
 }: RetirementCalculatorFormPropsType ) => {
 
   const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     // Add logic for form submission
-    console.log("Form submitted:", formData);
-  };
+    console.log("Form submitted:", formData)
+  }
 
   return (
     <div className="rounded-sm bg-[#D4D2C5] border-2 border-[#c4bfb2]">
@@ -69,5 +69,5 @@ export const RetirementCalculator = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

@@ -1,5 +1,3 @@
-import React from "react";
-
 /**
  * Traditional Footer component for the application.
  * @returns {JSX.Element} The traditional footer component.
@@ -42,7 +40,7 @@ const Footer = () => {
         </div>
       </div>
     </footer>
-  );
-};
+  )
+}
 
-export default Footer;
+export default Footer

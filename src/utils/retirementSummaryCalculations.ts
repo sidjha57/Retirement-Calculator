@@ -6,12 +6,12 @@
  * @returns The future value of the investment.
  */
 export function FutureValue(presentValue: number, numberOfYears: number, annualRateOfInterest: number): number {
-    annualRateOfInterest /= 100;
+    annualRateOfInterest /= 100
 
     // FV = PV * (1+r)^n
-    const futureValue = presentValue * Math.pow((1 + annualRateOfInterest), numberOfYears);
+    const futureValue = presentValue * Math.pow((1 + annualRateOfInterest), numberOfYears)
 
-    return Math.ceil(futureValue);
+    return Math.ceil(futureValue)
 }
 
 /**
@@ -22,16 +22,16 @@ export function FutureValue(presentValue: number, numberOfYears: number, annualR
  * @returns The future value of the SIP.
  */
 export function SIPComponent(monthlyContribution: number, numberOfYears: number, annualRateOfInterest: number): number {
-    const numberOfMonths = numberOfYears * 12;
+    const numberOfMonths = numberOfYears * 12
 
-    annualRateOfInterest /= 100;
+    annualRateOfInterest /= 100
 
-    const monthlyRateOfInterest = annualRateOfInterest / 12;
+    const monthlyRateOfInterest = annualRateOfInterest / 12
 
     // FV = MC * [(1+MRI)^NOM - 1] * (1 + MRI) / MRI
-    const wealthAtRetirement = monthlyContribution * (Math.pow(1 + monthlyRateOfInterest, numberOfMonths) - 1) * ((1 + monthlyRateOfInterest) / monthlyRateOfInterest);
+    const wealthAtRetirement = monthlyContribution * (Math.pow(1 + monthlyRateOfInterest, numberOfMonths) - 1) * ((1 + monthlyRateOfInterest) / monthlyRateOfInterest)
 
-    return Math.ceil(wealthAtRetirement);
+    return Math.ceil(wealthAtRetirement)
 }
 
 /**
@@ -43,12 +43,12 @@ export function SIPComponent(monthlyContribution: number, numberOfYears: number,
  * @returns The estimated pension pot at the current age.
  */
 export function EstimatedPensionPotCurrent(presentValue: number, monthlyContribution: number, numberOfYears: number, annualRateOfInterest: number): number {
-    const pensionPot = FutureValue(presentValue, numberOfYears, annualRateOfInterest);
-    const sipComponent = SIPComponent(monthlyContribution, numberOfYears, annualRateOfInterest);
+    const pensionPot = FutureValue(presentValue, numberOfYears, annualRateOfInterest)
+    const sipComponent = SIPComponent(monthlyContribution, numberOfYears, annualRateOfInterest)
 
-    const estimatedPensionPot = pensionPot + sipComponent;
+    const estimatedPensionPot = pensionPot + sipComponent
 
-    return Math.ceil(estimatedPensionPot);
+    return Math.ceil(estimatedPensionPot)
 }
 
 /**
@@ -59,15 +59,15 @@ export function EstimatedPensionPotCurrent(presentValue: number, monthlyContribu
  * @returns The required monthly income.
  */
 export function MonthlyIncome(futureValue: number, retirementAgeInYears: number, annualRateOfInterest: number): number {
-    const numberOfMonths = (90 - retirementAgeInYears) * 12;
-    annualRateOfInterest /= 100;
+    const numberOfMonths = (90 - retirementAgeInYears) * 12
+    annualRateOfInterest /= 100
 
-    const monthlyRateOfInterest = annualRateOfInterest / 12;
+    const monthlyRateOfInterest = annualRateOfInterest / 12
 
     // Monthly Income = (FV * r) / ((1+r)^n - 1)
-    const monthlyIncome = (futureValue * monthlyRateOfInterest) / ((Math.pow(1 + monthlyRateOfInterest, numberOfMonths) - 1) * (1 + monthlyRateOfInterest));
+    const monthlyIncome = (futureValue * monthlyRateOfInterest) / ((Math.pow(1 + monthlyRateOfInterest, numberOfMonths) - 1) * (1 + monthlyRateOfInterest))
 
-    return Math.ceil(monthlyIncome);
+    return Math.ceil(monthlyIncome)
 }
 
 /**
@@ -79,7 +79,7 @@ export function MonthlyIncome(futureValue: number, retirementAgeInYears: number,
  */
 export function EstimatedPensionPotRequired(desiredMonthlyIncome: number, retirementAgeInYears: number, annualRateOfInterest: number): number {
     // Pension Pot = DMI * ((1+r)^n - 1) / r
-    return SIPComponent(desiredMonthlyIncome, (90 - retirementAgeInYears), annualRateOfInterest);
+    return SIPComponent(desiredMonthlyIncome, (90 - retirementAgeInYears), annualRateOfInterest)
 }
 
 /**
@@ -90,5 +90,5 @@ export function EstimatedPensionPotRequired(desiredMonthlyIncome: number, retire
  * @returns The required monthly contribution.
  */
 export function monthlyContributionRequired(pensionPotEstimated: number, numberOfYears: number, annualRateOfInterest: number): number {
-    return MonthlyIncome(pensionPotEstimated, numberOfYears, annualRateOfInterest);
+    return MonthlyIncome(pensionPotEstimated, numberOfYears, annualRateOfInterest)
 }

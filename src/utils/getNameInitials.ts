@@ -5,11 +5,9 @@
  */
 export const GetInitialsFromName = (name: string): string => {
     // Split the name into an array of words
-    const nameArray = name.split(" ");
+    const nameArray = name.split(" ")
   
     // Extract the first character of each word and join them to form initials
-    const initials = nameArray.map((word) => word[0]).join("").toUpperCase();
-  
-    return initials;
-  };
+    return nameArray.map((word) => word[0]).join("").toUpperCase()
+  }
   
