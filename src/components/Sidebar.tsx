@@ -1,53 +1,13 @@
 import { useState } from "react"
 import { Link } from "react-router-dom"
-import { GetInitialsFromName } from "../utils/getNameInitials"
+import { GetInitialsFromName } from "@utils/getNameInitials"
+import { MENUS, USER } from "@utils/constants"
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true)
 
-  const Menus = [
-    { title: "Dashboard", icon: "home", link: "/home" },
-    {
-      title: "Retirement Planner",
-      link: "/retirement-plan",
-      icon: "crop_square",
-      gap: true,
-      textColor: "text-[#4c8495]", // blue
-    },
-    {
-      title: "Objective Mapping ",
-      icon: "crop_square",
-      textColor: "text-[#d18c70]", // orange
-    },
-    {
-      title: "Solution Finder",
-      icon: "crop_square",
-      textColor: "text-[#daab4d]", // yellow
-    },
-    {
-      title: "Risk Profiler",
-      icon: "crop_square",
-      textColor: "text-[#a094a0]", // purple
-    },
-    {
-      title: "Investment Selection",
-      icon: "crop_square",
-      textColor: "text-[#aec8c5]", // sky-blue
-    },
-    {
-      title: "Recommendation",
-      icon: "crop_square",
-      textColor: "text-[#519152]", // green
-    },
-    // ... (other menu items)
-    { title: "Settings", src: "Setting", icon: "settings", gap: true },
-  ]
-
-  const user = {
-    name: "John Smith",
-    profile: "Financial Advisor",
-  }
-  const initials = GetInitialsFromName(user.name)
+  
+  const initials = GetInitialsFromName(USER.name)
 
   return (
     <div
@@ -81,13 +41,13 @@ const Sidebar = () => {
             !open && "scale-0"
           }`}
         >
-          <h1 className="font-medium text-xl">{user.name}</h1>
-          <h2 className="font-small text-xs">{user.profile}</h2>
+          <h1 className="font-medium text-xl">{USER.name}</h1>
+          <h2 className="font-small text-xs">{USER.profile}</h2>
         </div>{" "}
       </div>
       <ul className="pt-4">
-        {Menus.map((menu, index) => (
-          <Link className="link" to={menu.link ? menu.link : "/"} key={index}>
+        {MENUS.map((menu, index) => (
+          <Link className="link" to={menu.link ? menu.link : "/"} key={menu.id}>
             <li
               className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
               ${menu.gap ? "mt-9" : "mt-2"} ${

@@ -1,5 +1,5 @@
 import React from "react"
-import AgeRangeSlider from "./RangeSlider"
+import AgeRangeSlider from "@components/RangeSlider"
 import { Slider } from "@mui/material"
 import {
   RetirementCalculatorFormPropsType,

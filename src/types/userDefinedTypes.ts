@@ -108,3 +108,23 @@ export enum RetirementFormReducerAction {
   UPDATE_NAME = "UPDATE_NAME",
   UPDATE_AMOUNT = "UPDATE_AMOUNT",
 }
+
+/**
+ * Represents the structure of the 'MenuType' data type.
+ */
+export interface MenuType {
+  id: string;
+  title: string;
+  icon?: string;
+  link?: string;
+  gap?: boolean;
+  textColor?: string;
+}
+
+/**
+ * Represents the structure of the 'MenuType' data type.
+ */
+export interface UserType {
+  name: string;
+  profile: string; 
+}

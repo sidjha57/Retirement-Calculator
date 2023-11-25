@@ -1,8 +1,8 @@
 import React from "react"
 import RetirementCalculatorForm from "./RetirementCalculatorForm"
 import { RetirementCalculatorFormPropsType } from "../types/userDefinedTypes"
-import BarChart from "./BarChart"
-import { CalculateDaysFromYears } from "../utils/getNumberOfDays"
+import BarChart from "@components/BarChart"
+import { CalculateDaysFromYears } from "@utils/getNumberOfDays"
 
 export const RetirementCalculator = ({
   currencySymbol,

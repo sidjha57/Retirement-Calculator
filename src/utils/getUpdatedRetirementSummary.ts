@@ -7,7 +7,7 @@ import {
   MonthlyIncome,
   EstimatedPensionPotRequired,
   EstimatedPensionPotCurrent,
-} from "./retirementSummaryCalculations"
+} from "@utils/retirementSummaryCalculations"
 
 /**
  * Calculates and returns an updated retirement summary based on the provided form data.

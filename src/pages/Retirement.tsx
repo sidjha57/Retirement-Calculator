@@ -1,10 +1,10 @@
 import React, { useEffect, useReducer, useState } from 'react'
-import { RetirementCalculator } from '../components/RetirementCalculator'
+import { RetirementCalculator } from '@components/RetirementCalculator'
 import getSymbolFromCurrency from 'currency-symbol-map'
 import { RetirementCalculatedSummaryType } from '../types/userDefinedTypes'
-import { GetUpdatedCalculatedSummary } from '../utils/getUpdatedRetirementSummary'
-import RetirementSummary from '../components/RetirementSummary'
-import { INITIAL_RETIREMENT_FORM_STATE, retirementFormReducer } from '../utils/retirementFormReducer'
+import { GetUpdatedCalculatedSummary } from '@utils/getUpdatedRetirementSummary'
+import RetirementSummary from '@components/RetirementSummary'
+import { INITIAL_RETIREMENT_FORM_STATE, retirementFormReducer } from '@utils/retirementFormReducer'
 
 const Retirement: React.FC = () => {
   // Retrieve currency symbol, default to '€' if not available
