@@ -1,22 +1,30 @@
-import React from "react";
-import RetirementCalculatorForm from "./RetirementCalculatorForm";
-import { RetirementCalculatorFormPropsType } from "../types/userDefinedTypes";
-import BarChart from "./BarChart";
-import { CalculateDaysFromYears } from "../utils/getNumberOfDays";
+import React from 'react'
+import RetirementCalculatorForm from '@components/RetirementCalculatorForm'
+import BarChart from '@components/BarChart'
+import { RetirementCalculatorFormPropsType } from '../types/userDefinedTypes'
+import { CalculateDaysFromYears } from '@utils/getNumberOfDays'
 
-export const RetirementCalculator = ({
-  currencySymbol,
+/**
+ * RetirementCalculator component for managing retirement planning calculations and visualization.
+ * @param {RetirementCalculatorFormPropsType} props - The properties for the RetirementCalculator component.
+ * @returns {JSX.Element} - The RetirementCalculator component.
+ */
+const RetirementCalculator: React.FC<RetirementCalculatorFormPropsType> = ({
   retirementFormState: formData,
   dispatch: setFormData,
   calculatedSummary,
   setCalculatedSummary,
-}: RetirementCalculatorFormPropsType ) => {
-
+}) => {
+  
+  /**
+   * Handle the form submission.
+   * @param {React.FormEvent} e - The form submission event.
+   */
   const handleFormSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
+    e.preventDefault()
     // Add logic for form submission
-    console.log("Form submitted:", formData);
-  };
+    console.log('Form submitted:', formData)
+  }
 
   return (
     <div className="rounded-sm bg-[#D4D2C5] border-2 border-[#c4bfb2]">
@@ -42,9 +50,8 @@ export const RetirementCalculator = ({
 
       <div className="p-8 grid grid-cols-2 gap-2 lg:gap-16 md:gap-10 sm:gap-4">
         <div>
-          {/* form */}
+          {/* Form */}
           <RetirementCalculatorForm
-            currencySymbol={currencySymbol}
             retirementFormState={formData}
             dispatch={setFormData}
             calculatedSummary={calculatedSummary}
@@ -52,22 +59,24 @@ export const RetirementCalculator = ({
           />
         </div>
         <div className="">
-          {/* visualize */}
+          {/* Visualize */}
           <div>
             <h1 className="text-2xl text-center py-2">
               {formData.yearsLeftToRetirement.retirementAge - formData.yearsLeftToRetirement.currentAge} years To Retirement
             </h1>
-            <h3 className="text-[10px]  pb-5 text-center">
+            <h3 className="text-[10px] pb-5 text-center">
               {CalculateDaysFromYears(formData.yearsLeftToRetirement.retirementAge - formData.yearsLeftToRetirement.currentAge)} Paydays Left Until Retirement
             </h3>
             <div className="bg-[#c4bfb2] h-[1px] max-w-full"></div>
           </div>
 
           <div className="self-end">
-            <BarChart currencySymbol={currencySymbol} height1={calculatedSummary.monthlyIncome.desired} height2={calculatedSummary.monthlyIncome.current} />
+            <BarChart height1={calculatedSummary.monthlyIncome.desired} height2={calculatedSummary.monthlyIncome.current} />
           </div>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}
+
+export default RetirementCalculator

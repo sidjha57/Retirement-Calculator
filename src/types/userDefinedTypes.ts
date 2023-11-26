@@ -1,10 +1,10 @@
 /**
  * Represents the structure of the 'YearsLeftToRetirementType' data type.
  */
-export type YearsLeftToRetirementType = {
+export interface YearsLeftToRetirementType {
   currentAge: number;
   retirementAge: number;
-};
+}
 
 /**
  * Represents the structure of the 'RetirementMonthlyIncomeType' data type.
@@ -42,43 +42,40 @@ export interface RetirementCalculatedSummaryType {
 /**
  * Represents the structure of the 'RetirementCalculatorFormDataType' data type.
  */
-export type RetirementCalculatorFormDataType = {
+export interface RetirementCalculatorFormDataType {
   name: string;
   yearsLeftToRetirement: YearsLeftToRetirementType;
   monthlyPensionContribution: number;
   monthlyIncomeAfterRetirement: number;
   currentRetirementSavings: number;
-};
+}
 
 /**
  * Represents the properties expected by the RetirementCalculatorForm component.
  */
-export type RetirementCalculatorFormPropsType = {
-  currencySymbol: string;
+export interface RetirementCalculatorFormPropsType {
   retirementFormState: RetirementCalculatorFormDataType;
   dispatch: React.Dispatch<RetirementFormActionType>;
   calculatedSummary: RetirementCalculatedSummaryType;
   setCalculatedSummary: React.Dispatch<React.SetStateAction<RetirementCalculatedSummaryType>>;
-};
+}
 
 /**
  * Represents the properties expected by the RetirementSummary component.
  */
-export type RetirementSummaryPropsType = {
+export interface RetirementSummaryPropsType {
   headline: string;
   headlineTextColor?: string;
   monthlyContributionRequired?: boolean;
-  currency: string;
   retirementFundPerMonth: number;
   pensionPot: number;
   monthlyContribution: number;
-};
+}
 
 /**
  * Represents the properties expected by the BarChart component.
  */
 export interface BarChartPropsType {
-  currencySymbol: string;
   height1: number;
   height2: number;
 }
@@ -107,4 +104,110 @@ export enum RetirementFormReducerAction {
   UPDATE_AGE = "UPDATE_AGE",
   UPDATE_NAME = "UPDATE_NAME",
   UPDATE_AMOUNT = "UPDATE_AMOUNT",
+}
+
+/**
+ * Enumeration for the titles of the menu.
+ */
+export enum MenuTitleEnum {
+  DASHBOARD = 'DASHBOARD',
+  RETIREMENT_PLANNER = 'RETIREMENT_PLANNER',
+  OBJECTIVE_MAPPING = 'OBJECTIVE_MAPPING',
+  SOLUTION_FINDER = 'SOLUTION_FINDER',
+  INVESTMENT_SELECTION = 'INVESTMENT_SELECTION',
+  DISCOVERY= 'DISCOVERY',
+  RECOMMENDATION = 'RECOMMENDATION',
+  SETTINGS = 'SETTINGS',
+}
+
+/**
+ * Type representing the keys of the MenuTitleEnum.
+ */
+export type MenuTitleType = EnumKey<typeof MenuTitleEnum>;
+
+/**
+ * Represents the structure of the 'MenuType' data type.
+ */
+export interface MenuInfoType {
+  id: string;
+  icon?: string;
+  link?: string;
+  gap?: boolean;
+  textColor?: string;
+}
+
+/**
+ * Represents the structure of the 'MenuType' data type.
+ */
+export interface UserType {
+  name: string;
+  profile: string; 
+}
+
+/**
+ * Enumeration for currency codes.
+ */
+export const CurrencyCodeEnum = {
+  INR: 'INR',
+  USD: 'USD',
+  GBP: 'GBP',
+  AED: 'AED',
+  CHF: 'CHF',
+  ZAR: 'ZAR',
+} as const
+
+/**
+ * Enumeration for locale codes.
+ */
+export const LocaleEnum = {
+  INR: 'en-IN',
+  USD: 'en-US',
+  GBP: 'en-GB',
+  AED: 'ar-AE',
+  CHF: 'en-CH',
+  ZAR: 'en-ZA',
+} as const
+
+/**
+ * Enumeration for currency symbols.
+ */
+export const CurrencySymbolEnum = {
+  INR: '₹',
+  USD: '$',
+  GBP: '£',
+  AED: 'د.إ',
+  CHF: 'CHF',
+  ZAR: 'R',
+} as const
+
+type EnumKey<T> = keyof T;
+
+/**
+ * Type representing the keys of the CurrencyCodeEnum.
+ */
+type CurrencyCodeEnumKey = EnumKey<typeof CurrencyCodeEnum>;
+
+/**
+ * Type representing the keys of the LocaleEnum.
+ */
+type LocaleEnumKey = EnumKey<typeof LocaleEnum>;
+
+/**
+ * Type representing the keys of the CurrencySymbolEnum.
+ */
+type SymbolEnumKey = EnumKey<typeof CurrencySymbolEnum>;
+
+/**
+ * Type representing the currency code.
+ */
+export type CurrencyCodeType = typeof CurrencyCodeEnum[CurrencyCodeEnumKey];
+
+/**
+ * Represents the structure of the 'CurrencyInfoType' data type.
+ */
+export interface CurrencyInfoType {
+  symbol: typeof CurrencySymbolEnum[SymbolEnumKey];
+  locale: typeof LocaleEnum[LocaleEnumKey];
+  averageCompoundedBankAnnualInterestRate: number;
+  averageCompoundedInflationAnnualRate: number;
 }

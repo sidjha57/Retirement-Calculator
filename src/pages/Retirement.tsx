@@ -1,19 +1,22 @@
-import React, { useEffect, useReducer, useState } from 'react';
-import { RetirementCalculator } from '../components/RetirementCalculator';
-import getSymbolFromCurrency from 'currency-symbol-map';
-import { RetirementCalculatedSummaryType } from '../types/userDefinedTypes';
-import { GetUpdatedCalculatedSummary } from '../utils/getUpdatedRetirementSummary';
-import RetirementSummary from '../components/RetirementSummary';
-import { INITIAL_RETIREMENT_FORM_STATE, retirementFormReducer } from '../utils/retirementFormReducer';
+import React, { useEffect, useReducer, useState } from 'react'
+import RetirementCalculator from '@components/RetirementCalculator'
+import RetirementSummary from '@components/RetirementSummary'
+import { CurrencyCodeType, RetirementCalculatedSummaryType } from '../types/userDefinedTypes'
+import { GetUpdatedCalculatedSummary } from '@utils/getUpdatedRetirementSummary'
+import { INITIAL_RETIREMENT_FORM_STATE, retirementFormReducer } from '@utils/retirementFormReducer'
+import { RootState } from '@store/index'
+import { useSelector } from 'react-redux'
 
+/**
+ * Retirement component responsible for managing retirement planning and summary.
+ * @returns {JSX.Element} - The Retirement component.
+ */
 const Retirement: React.FC = () => {
-  // Retrieve currency symbol, default to '€' if not available
-  let currencySymbol = getSymbolFromCurrency('GBP') || '€';
+  const currencyCode: CurrencyCodeType = useSelector((state: RootState) => state.currencyCode.value)
 
-  const [retirementFormState, dispatch] = useReducer(retirementFormReducer, INITIAL_RETIREMENT_FORM_STATE);
-  
+  const [retirementFormState, dispatch] = useReducer(retirementFormReducer, INITIAL_RETIREMENT_FORM_STATE)
+
   // Initial calculated summary state
-
   const [calculatedSummary, setCalculatedSummary] = useState<RetirementCalculatedSummaryType>({
     monthlyIncome: {
       current: 798,
@@ -27,13 +30,13 @@ const Retirement: React.FC = () => {
       current: 400,
       required: 1200,
     },
-  });
+  })
 
   // Update calculated summary when form data changes
   useEffect(() => {
-    const updatedCalculatedSummary = GetUpdatedCalculatedSummary(retirementFormState);
-    setCalculatedSummary(updatedCalculatedSummary);
-  }, [retirementFormState, retirementFormState.monthlyPensionContribution]);
+    const updatedCalculatedSummary = GetUpdatedCalculatedSummary(retirementFormState, currencyCode)
+    setCalculatedSummary(updatedCalculatedSummary)
+  }, [retirementFormState, currencyCode])
 
   return (
     <main>
@@ -41,7 +44,6 @@ const Retirement: React.FC = () => {
       <div className="pt-24 pb-6 bg-[#e5e1d7] grid grid-cols-2 justify-items-center items-center">
         <RetirementSummary
           headline="Current Retirement Forecast"
-          currency={currencySymbol}
           retirementFundPerMonth={calculatedSummary.monthlyIncome.current}
           pensionPot={calculatedSummary.estimatedPensionPot.current}
           monthlyContribution={calculatedSummary.monthlyContribution.current}
@@ -50,7 +52,6 @@ const Retirement: React.FC = () => {
           headline="Desired Retirement Income"
           headlineTextColor="text-[#b26748]"
           monthlyContributionRequired={true}
-          currency={currencySymbol}
           retirementFundPerMonth={calculatedSummary.monthlyIncome.desired}
           pensionPot={calculatedSummary.estimatedPensionPot.desired}
           monthlyContribution={calculatedSummary.monthlyContribution.required}
@@ -60,7 +61,6 @@ const Retirement: React.FC = () => {
       {/* The calculator */}
       <div className="bg-[#e1ddd3] h-100 p-10">
         <RetirementCalculator
-          currencySymbol={currencySymbol}
           retirementFormState={retirementFormState}
           dispatch={dispatch}
           calculatedSummary={calculatedSummary}
@@ -68,7 +68,7 @@ const Retirement: React.FC = () => {
         />
       </div>
     </main>
-  );
-};
+  )
+}
 
-export default Retirement;
+export default Retirement
