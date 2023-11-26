@@ -1,20 +1,22 @@
 import React, { useEffect, useReducer, useState } from 'react'
-import { RetirementCalculator } from '@components/RetirementCalculator'
+import RetirementCalculator from '@components/RetirementCalculator'
+import RetirementSummary from '@components/RetirementSummary'
 import { CurrencyCodeType, RetirementCalculatedSummaryType } from '../types/userDefinedTypes'
 import { GetUpdatedCalculatedSummary } from '@utils/getUpdatedRetirementSummary'
-import RetirementSummary from '@components/RetirementSummary'
 import { INITIAL_RETIREMENT_FORM_STATE, retirementFormReducer } from '@utils/retirementFormReducer'
 import { RootState } from '@store/index'
 import { useSelector } from 'react-redux'
 
-
+/**
+ * Retirement component responsible for managing retirement planning and summary.
+ * @returns {JSX.Element} - The Retirement component.
+ */
 const Retirement: React.FC = () => {
   const currencyCode: CurrencyCodeType = useSelector((state: RootState) => state.currencyCode.value)
 
   const [retirementFormState, dispatch] = useReducer(retirementFormReducer, INITIAL_RETIREMENT_FORM_STATE)
-  
-  // Initial calculated summary state
 
+  // Initial calculated summary state
   const [calculatedSummary, setCalculatedSummary] = useState<RetirementCalculatedSummaryType>({
     monthlyIncome: {
       current: 798,

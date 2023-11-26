@@ -13,6 +13,7 @@ import { formattedCurrency } from '@utils/getFormattedCurrency'
 /**
  * RetirementCalculatorForm component for collecting user input in retirement planning.
  * @param {RetirementCalculatorFormPropsType} props - Properties for the RetirementCalculatorForm component.
+ * @returns {JSX.Element} - The RetirementCalculatorForm component.
  */
 const RetirementCalculatorForm = ({ retirementFormState, dispatch }: RetirementCalculatorFormPropsType) => {
   // Retrieve the currency code from the Redux store
@@ -36,6 +37,7 @@ const RetirementCalculatorForm = ({ retirementFormState, dispatch }: RetirementC
    * @param {number | number[]} newValue - The new value of the slider.
    */
   const handleSliderChange = (e: Event, newValue: number | number[]) => {
+    e.preventDefault()
     dispatch({
       type: RetirementFormReducerAction.UPDATE_SLIDER,
       payload: newValue,

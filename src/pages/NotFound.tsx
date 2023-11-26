@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 /**
  * Component to display when the requested page is not found.
+ * @returns {JSX.Element} - The NotFound component.
  */
 const NotFound: React.FC = () => {
   return (

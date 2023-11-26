@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 
 /**
  * Component representing the home page.
+ * @returns {JSX.Element} - The Home component.
  */
 const Home: React.FC = () => {
   return (

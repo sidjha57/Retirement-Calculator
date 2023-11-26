@@ -106,6 +106,9 @@ export enum RetirementFormReducerAction {
   UPDATE_AMOUNT = "UPDATE_AMOUNT",
 }
 
+/**
+ * Enumeration for the titles of the menu.
+ */
 export enum MenuTitleEnum {
   DASHBOARD = 'DASHBOARD',
   RETIREMENT_PLANNER = 'RETIREMENT_PLANNER',
@@ -117,6 +120,9 @@ export enum MenuTitleEnum {
   SETTINGS = 'SETTINGS',
 }
 
+/**
+ * Type representing the keys of the MenuTitleEnum.
+ */
 export type MenuTitleType = EnumKey<typeof MenuTitleEnum>;
 
 /**
@@ -138,8 +144,9 @@ export interface UserType {
   profile: string; 
 }
 
-
-
+/**
+ * Enumeration for currency codes.
+ */
 export const CurrencyCodeEnum = {
   INR: 'INR',
   USD: 'USD',
@@ -149,6 +156,9 @@ export const CurrencyCodeEnum = {
   ZAR: 'ZAR',
 } as const
 
+/**
+ * Enumeration for locale codes.
+ */
 export const LocaleEnum = {
   INR: 'en-IN',
   USD: 'en-US',
@@ -158,6 +168,9 @@ export const LocaleEnum = {
   ZAR: 'en-ZA',
 } as const
 
+/**
+ * Enumeration for currency symbols.
+ */
 export const CurrencySymbolEnum = {
   INR: '₹',
   USD: '$',
@@ -168,16 +181,33 @@ export const CurrencySymbolEnum = {
 } as const
 
 type EnumKey<T> = keyof T;
+
+/**
+ * Type representing the keys of the CurrencyCodeEnum.
+ */
 type CurrencyCodeEnumKey = EnumKey<typeof CurrencyCodeEnum>;
+
+/**
+ * Type representing the keys of the LocaleEnum.
+ */
 type LocaleEnumKey = EnumKey<typeof LocaleEnum>;
+
+/**
+ * Type representing the keys of the CurrencySymbolEnum.
+ */
 type SymbolEnumKey = EnumKey<typeof CurrencySymbolEnum>;
 
+/**
+ * Type representing the currency code.
+ */
 export type CurrencyCodeType = typeof CurrencyCodeEnum[CurrencyCodeEnumKey];
 
+/**
+ * Represents the structure of the 'CurrencyInfoType' data type.
+ */
 export interface CurrencyInfoType {
   symbol: typeof CurrencySymbolEnum[SymbolEnumKey];
   locale: typeof LocaleEnum[LocaleEnumKey];
   averageCompoundedBankAnnualInterestRate: number;
   averageCompoundedInflationAnnualRate: number;
 }
-
