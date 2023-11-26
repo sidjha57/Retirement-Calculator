@@ -29,10 +29,10 @@ https://github.com/sidjha57/Retirement-Calculator/assets/62923020/b7b062ef-f2c6-
 
 ```bash
 # Clone the repository
-git clone https://github.com/your-username/retirement-planner.git
+[git clone https://github.com/your-username/retirement-planner.git](https://github.com/sidjha57/Retirement-Calculator.git)
 
 # Navigate to the project directory
-cd retirement-planner
+cd Retirement-Calculator
 
 # Install dependencies
 npm install
