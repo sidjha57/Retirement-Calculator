@@ -1,10 +1,10 @@
 import { CurrencyCodeType, CurrencyInfoType, CurrencySymbolEnum, LocaleEnum, MenuInfoType, MenuTitleType, UserType } from "../types/userDefinedTypes"
-import shortid from "shortid"
+import { nanoid } from "nanoid"
 
 export const MENUS: Record<MenuTitleType, MenuInfoType> = {
-  DASHBOARD: { id: shortid.generate(), icon: "home", link: "/home" },
+  DASHBOARD: { id: nanoid(), icon: "home", link: "/home" },
   RETIREMENT_PLANNER: {
-    id: shortid.generate(),
+    id: nanoid(),
     
     link: "/retirement-plan",
     icon: "crop_square",
@@ -12,32 +12,32 @@ export const MENUS: Record<MenuTitleType, MenuInfoType> = {
     textColor: "text-[#4c8495]", // blue
   },
   OBJECTIVE_MAPPING:{
-    id: shortid.generate(),
+    id: nanoid(),
     icon: "crop_square",
     textColor: "text-[#d18c70]", // orange
   },
   SOLUTION_FINDER:{
-    id: shortid.generate(),
+    id: nanoid(),
     icon: "crop_square",
     textColor: "text-[#daab4d]", // yellow
   },
   INVESTMENT_SELECTION:{
-    id: shortid.generate(),
+    id: nanoid(),
     icon: "crop_square",
     textColor: "text-[#a094a0]", // purple
   },
   DISCOVERY:{
-    id: shortid.generate(),
+    id: nanoid(),
     icon: "crop_square",
     textColor: "text-[#aec8c5]", // sky-blue
   },
   RECOMMENDATION:{
-    id: shortid.generate(),
+    id: nanoid(),
     icon: "crop_square",
     textColor: "text-[#519152]", // green
   },
   SETTINGS: {
-    id: shortid.generate(),
+    id: nanoid(),
     icon: "settings",
     gap: true,
   },
