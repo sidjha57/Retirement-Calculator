@@ -2,10 +2,11 @@ import { useState } from "react"
 import { Link } from "react-router-dom"
 import { GetInitialsFromName } from "@utils/getNameInitials"
 import { MENUS, USER } from "@utils/constants"
+import { MenuTitleType } from "types/userDefinedTypes"
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true)
-  const [selectedID, setSelectedID] = useState<string>("")
+  const [selectedID, setSelectedID] = useState<string>(MENUS.RETIREMENT_PLANNER.id)
   
   const initials = GetInitialsFromName(USER.name)
 
@@ -46,21 +47,21 @@ const Sidebar = () => {
         </div>{" "}
       </div>
       <ul className="pt-4">
-        {MENUS.map((menu) => (
-          <Link className="link" to={menu.link ? menu.link : "/"} key={menu.id} onClick={() => {setSelectedID(menu.id)}}>
+        {Object.keys(MENUS).map((title) => (
+          <Link className="link" to={MENUS[title as MenuTitleType].link ? MENUS[title as MenuTitleType].link : "/"} key={MENUS[title as MenuTitleType].id} onClick={() => {setSelectedID(MENUS[title as MenuTitleType].id)}}>
             <li
               className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
-              ${menu.gap ? "mt-9" : "mt-2"} ${menu.id === selectedID ? "bg-light-white" : ""
+              ${MENUS[title as MenuTitleType].gap ? "mt-9" : "mt-2"} ${MENUS[title as MenuTitleType].id === selectedID ? "bg-light-white" : ""
               } `}
             >
               <div className="flex w-full justify-between">
                 <span
                   className={`${!open && "hidden"} origin-left duration-200`}
                 >
-                  {menu.title}
+                  {title}
                 </span>
-                <span className={`material-symbols-outlined ${menu.textColor}`}>
-                  {menu.icon}
+                <span className={`material-symbols-outlined ${MENUS[title as MenuTitleType].textColor}`}>
+                  {MENUS[title as MenuTitleType].icon}
                 </span>
               </div>
             </li>
