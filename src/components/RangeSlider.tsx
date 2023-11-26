@@ -66,12 +66,12 @@ const AgeRangeSlider = ({ yearsLeftToRetirement, dispatch }: AgeRangeSliderProps
         </div>
       </div>
       <div className="grid grid-cols-6">
-        <label className="col-start-1 col-span-2 justify-self-start block text-xs my-1" htmlFor="money">
+        <span className="col-start-1 col-span-2 justify-self-start block text-xs my-1" >
           Current age
-        </label>
-        <label className="col-start-5 col-span-6 justify-self-end block text-xs my-1" htmlFor="money">
+        </span>
+        <span className="col-start-5 col-span-6 justify-self-end block text-xs my-1" >
           Retirement age
-        </label>
+        </span>
       </div>
     </div>
   )

@@ -5,7 +5,6 @@ import BarChart from "@components/BarChart"
 import { CalculateDaysFromYears } from "@utils/getNumberOfDays"
 
 export const RetirementCalculator = ({
-  currencySymbol,
   retirementFormState: formData,
   dispatch: setFormData,
   calculatedSummary,
@@ -44,7 +43,6 @@ export const RetirementCalculator = ({
         <div>
           {/* form */}
           <RetirementCalculatorForm
-            currencySymbol={currencySymbol}
             retirementFormState={formData}
             dispatch={setFormData}
             calculatedSummary={calculatedSummary}
@@ -64,7 +62,7 @@ export const RetirementCalculator = ({
           </div>
 
           <div className="self-end">
-            <BarChart currencySymbol={currencySymbol} height1={calculatedSummary.monthlyIncome.desired} height2={calculatedSummary.monthlyIncome.current} />
+            <BarChart  height1={calculatedSummary.monthlyIncome.desired} height2={calculatedSummary.monthlyIncome.current} />
           </div>
         </div>
       </div>

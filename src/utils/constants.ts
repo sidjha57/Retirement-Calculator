@@ -1,4 +1,4 @@
-import { MenuType, UserType } from "../types/userDefinedTypes"
+import { CurrencyCodeType, CurrencyInfoType, MenuType, UserType } from "../types/userDefinedTypes"
 import shortid from "shortid"
 
 export const MENUS: MenuType[] = [
@@ -52,4 +52,32 @@ export const MENUS: MenuType[] = [
 export const USER: UserType = {
   name: "John Smith",
   profile: "Financial Advisor",
+}
+
+export const CURRENCIES: Record<CurrencyCodeType, CurrencyInfoType> = {
+  INR: {
+    symbol: '₹',
+    averageCompoundedBankAnnualInterestRate: 4.0,
+    averageCompoundedInflationAnnualRate: 6.7,
+  },
+  USD: {
+    symbol: '$',
+    averageCompoundedBankAnnualInterestRate: 0.6,
+    averageCompoundedInflationAnnualRate: 3.8,
+  },
+  GBP: {
+    symbol: '£',
+    averageCompoundedBankAnnualInterestRate: 3.5,
+    averageCompoundedInflationAnnualRate: 5.2,
+  },
+  AED: {
+    symbol: 'د.إ',
+    averageCompoundedBankAnnualInterestRate: 0.8,
+    averageCompoundedInflationAnnualRate: 1.62,
+  },
+  CHF: {
+    symbol: 'CHF',
+    averageCompoundedBankAnnualInterestRate: 0.8,
+    averageCompoundedInflationAnnualRate: 2.4,
+  },
 }

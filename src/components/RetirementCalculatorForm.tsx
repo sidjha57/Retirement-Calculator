@@ -2,16 +2,20 @@ import React from "react"
 import AgeRangeSlider from "@components/RangeSlider"
 import { Slider } from "@mui/material"
 import {
+  CurrencyCodeType,
   RetirementCalculatorFormPropsType,
   RetirementFormReducerAction,
 } from "../types/userDefinedTypes"
+import { RootState } from "@store/index"
+import { CURRENCIES } from "@utils/constants"
+import { useSelector } from "react-redux"
 
 const RetirementCalculatorForm = ({
-  currencySymbol,
   retirementFormState,
   dispatch,
 }: RetirementCalculatorFormPropsType) => {
-  
+  const currencyCode: CurrencyCodeType = useSelector((state: RootState) => state.currencyCode.value)
+
   const handleAmountChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> 
   ) => {
@@ -48,6 +52,7 @@ const RetirementCalculatorForm = ({
           type="text"
           id="name"
           name="name"
+          autoComplete="on"
           value={retirementFormState.name}
           onChange={(e) => { dispatch({type: RetirementFormReducerAction.UPDATE_NAME, payload: e.target.value}) }}
           className="w-full border p-2 rounded-md"
@@ -62,7 +67,7 @@ const RetirementCalculatorForm = ({
         </label>
         <div className="relative">
           <span className="absolute inset-y-0 left-0 pl-2 flex items-center">
-            {currencySymbol}
+          {CURRENCIES[currencyCode as CurrencyCodeType].symbol}
           </span>
           <input
             type="text"
@@ -71,7 +76,7 @@ const RetirementCalculatorForm = ({
             value={new Intl.NumberFormat('en-IN').format(retirementFormState.monthlyIncomeAfterRetirement)}
             onChange={handleAmountChange}
             data-type="currency"
-            className="w-full border p-2 rounded-md pl-8"
+            className="w-full border p-2 rounded-md pl-12"
           />
         </div>
         <label className="block text-[10px] my-1" htmlFor="monthlyIncomeAfterRetirement">
@@ -82,9 +87,9 @@ const RetirementCalculatorForm = ({
 
       {/* Your age slider */}
       <div>
-        <label className="block text-sm mb-1" htmlFor="yearsLeftToRetirement">
+        <span className="block text-sm mb-1">
           Your age
-        </label>
+        </span>
         <AgeRangeSlider yearsLeftToRetirement={retirementFormState.yearsLeftToRetirement} dispatch={dispatch} />
       </div>
       <hr className="bg-[#c4bfb2] h-[1px]" />
@@ -103,10 +108,10 @@ const RetirementCalculatorForm = ({
               value={new Intl.NumberFormat('en-IN').format(retirementFormState.monthlyPensionContribution)}
               onChange={handleAmountChange}
               data-type="currency"
-              className="w-full rounded-md p-1 pl-5"
+              className="w-full rounded-md p-1 pl-10"
             />
             <span className="absolute inset-y-0 left-0 pl-1 flex items-center">
-              {currencySymbol}
+              {CURRENCIES[currencyCode as CurrencyCodeType].symbol}
             </span>
           </div>
 
@@ -138,7 +143,7 @@ const RetirementCalculatorForm = ({
       <div>
         <div className="relative">
           <span className="absolute inset-y-0 left-0 pl-2 flex items-center">
-            {currencySymbol}
+            {CURRENCIES[currencyCode as CurrencyCodeType].symbol}
           </span>
           <input
             type="text"
@@ -147,7 +152,7 @@ const RetirementCalculatorForm = ({
             value={new Intl.NumberFormat('en-IN').format(retirementFormState.currentRetirementSavings)}
             onChange={handleAmountChange}
             data-type="currency"
-            className="w-full border p-2 rounded-md pl-8"
+            className="w-full border p-2 rounded-md pl-12"
           />
         </div>
       </div>

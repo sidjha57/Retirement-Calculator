@@ -1,14 +1,18 @@
-import { RetirementSummaryPropsType } from "../types/userDefinedTypes"
+import { RootState } from "@store/index"
+import { useSelector } from "react-redux"
+import { CurrencyCodeType, RetirementSummaryPropsType } from "../types/userDefinedTypes"
+import { CURRENCIES } from "@utils/constants"
 
 const RetirementSummary = ({
   headline,
   headlineTextColor,
   monthlyContributionRequired,
-  currency,
   retirementFundPerMonth,
   pensionPot,
   monthlyContribution,
 }: RetirementSummaryPropsType) => {
+  const currencyCode: CurrencyCodeType = useSelector((state: RootState) => state.currencyCode.value)
+
   return (
     <div className="grid grid-flow-row gap-4">
       <h1 className={`${headlineTextColor ? headlineTextColor : "text-[#79736c]"} text-sm`}>
@@ -17,7 +21,7 @@ const RetirementSummary = ({
 
       <div className="grid grid-cols-2">
         <span className="text-3xl">
-          {currency}{" "}
+          {CURRENCIES[currencyCode as CurrencyCodeType].symbol}{" "}
           {new Intl.NumberFormat("en-IN", {}).format(retirementFundPerMonth)}
         </span>
         <span className="self-end">per month</span>
@@ -27,7 +31,7 @@ const RetirementSummary = ({
         <div>
           <p className="text-sm text-[#79736c]">Estimated pension pot</p>
           <span className="text-xl">
-            {currency}{" "}
+            {CURRENCIES[currencyCode as CurrencyCodeType].symbol}{" "}
             {new Intl.NumberFormat("en-IN", {}).format(pensionPot)}
           </span>
         </div>
@@ -36,7 +40,7 @@ const RetirementSummary = ({
             Monthly contribution {monthlyContributionRequired ? "required" : ""}
           </p>
           <span className="text-xl">
-            {currency}{" "}
+            {CURRENCIES[currencyCode as CurrencyCodeType].symbol}{" "}
             {new Intl.NumberFormat("en-IN", {}).format(monthlyContribution)}
           </span>
         </div>

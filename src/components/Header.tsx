@@ -1,4 +1,9 @@
-import { useState } from "react"
+import { setCurrencyCode } from "@store/currencyCode/reducer"
+import { RootState } from "@store/index"
+import { CURRENCIES } from "@utils/constants"
+import { ChangeEvent, useState } from "react"
+import { useDispatch, useSelector } from "react-redux"
+import { CurrencyCodeType } from "types/userDefinedTypes"
 
 /**
  * Header component for the application.
@@ -6,6 +11,16 @@ import { useState } from "react"
  */
 const Header = () => {
   const [searchString, setSearchString] = useState<string>()
+  const currencyCode: CurrencyCodeType = useSelector((state: RootState) => state.currencyCode.value)
+
+  console.log(currencyCode)
+  const dispatch = useDispatch()
+
+  const handleCurrencyChange = (e: ChangeEvent<HTMLSelectElement>) => {
+    console.log(currencyCode)
+    dispatch(setCurrencyCode(e.target.value as CurrencyCodeType))
+  }
+
 
   /**
    * Handles the change in the search input.
@@ -16,10 +31,10 @@ const Header = () => {
   }
 
   return (
-    <header className="sticky top-0 text-white bg-[#d9d8d2] ">
-      <div className="grid grid-cols-4 h-14 items-center">
+    <header className="sticky top-0 text-white bg-[#d9d8d2]">
+      <div className="grid grid-cols-5 h-14 items-center">
         {/* Search Bar */}
-        <div className="relative text-[#58514c] justify-self-end self-center col-span-2">
+        <div className="relative text-[#58514c] justify-self-end self-center  col-span-2">
           <button className="absolute left-0 ml-4 mt-3">
             <svg
               className="h-4 w-4 fill-current"
@@ -49,6 +64,18 @@ const Header = () => {
 
         {/* Dashboard Text */}
         <div className="text-black pl-10">Dashboard</div>
+
+        {/* Currency Selector */}
+        <div className="currency">
+          <span className=" text-[#58514c] pr-4">Select a currency:</span>
+          <select name="currencies" id="currencies" value={currencyCode} onChange={handleCurrencyChange} className="p-2 pr-8 text-[#58514c] rounded-md bg-[#cec7b5] focus:border focus:border-[#58514c] active:border-[#58514c]">
+            {Object.keys(CURRENCIES).map((code) => (
+              <option key={code} value={code}>
+                {CURRENCIES[code as CurrencyCodeType].symbol}
+              </option>
+            ))}
+          </select>
+        </div>
 
         {/* Logo */}
         <div className="justify-self-center">

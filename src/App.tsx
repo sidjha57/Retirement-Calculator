@@ -6,6 +6,8 @@ import './App.css'
 import NotFound from './pages/NotFound'
 import Retirement from './pages/Retirement'
 import Sidebar from './components/Sidebar'
+import { Provider } from 'react-redux'
+import { store } from './store'
 
 /**
  * Component representing the overall layout of the application.
@@ -51,7 +53,9 @@ const router = createBrowserRouter([
 function App() {
   return (
     <div className="app">
-      <RouterProvider router={router} />
+      <Provider store={store}>
+        <RouterProvider router={router} />
+      </Provider>
     </div>
   )
 }

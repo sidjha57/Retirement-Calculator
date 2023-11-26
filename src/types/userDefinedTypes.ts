@@ -54,7 +54,6 @@ export interface RetirementCalculatorFormDataType {
  * Represents the properties expected by the RetirementCalculatorForm component.
  */
 export interface RetirementCalculatorFormPropsType {
-  currencySymbol: string;
   retirementFormState: RetirementCalculatorFormDataType;
   dispatch: React.Dispatch<RetirementFormActionType>;
   calculatedSummary: RetirementCalculatedSummaryType;
@@ -68,7 +67,6 @@ export interface RetirementSummaryPropsType {
   headline: string;
   headlineTextColor?: string;
   monthlyContributionRequired?: boolean;
-  currency: string;
   retirementFundPerMonth: number;
   pensionPot: number;
   monthlyContribution: number;
@@ -78,7 +76,6 @@ export interface RetirementSummaryPropsType {
  * Represents the properties expected by the BarChart component.
  */
 export interface BarChartPropsType {
-  currencySymbol: string;
   height1: number;
   height2: number;
 }
@@ -127,4 +124,12 @@ export interface MenuType {
 export interface UserType {
   name: string;
   profile: string; 
+}
+
+export type CurrencyCodeType = 'INR' | 'USD' | 'GBP' | 'AED' | 'CHF';
+
+export interface CurrencyInfoType {
+  symbol: '₹' | '$' | '£' | 'د.إ' | 'CHF';
+  averageCompoundedBankAnnualInterestRate: number;
+  averageCompoundedInflationAnnualRate: number;
 }
