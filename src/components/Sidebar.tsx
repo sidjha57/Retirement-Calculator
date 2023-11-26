@@ -5,7 +5,7 @@ import { MENUS, USER } from "@utils/constants"
 
 const Sidebar = () => {
   const [open, setOpen] = useState(true)
-
+  const [selectedID, setSelectedID] = useState<string>("")
   
   const initials = GetInitialsFromName(USER.name)
 
@@ -46,12 +46,11 @@ const Sidebar = () => {
         </div>{" "}
       </div>
       <ul className="pt-4">
-        {MENUS.map((menu, index) => (
-          <Link className="link" to={menu.link ? menu.link : "/"} key={menu.id}>
+        {MENUS.map((menu) => (
+          <Link className="link" to={menu.link ? menu.link : "/"} key={menu.id} onClick={() => {setSelectedID(menu.id)}}>
             <li
               className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
-              ${menu.gap ? "mt-9" : "mt-2"} ${
-                index === 0 && "bg-light-white"
+              ${menu.gap ? "mt-9" : "mt-2"} ${menu.id === selectedID ? "bg-light-white" : ""
               } `}
             >
               <div className="flex w-full justify-between">

@@ -57,27 +57,38 @@ export const USER: UserType = {
 export const CURRENCIES: Record<CurrencyCodeType, CurrencyInfoType> = {
   INR: {
     symbol: '₹',
+    locale: 'en-IN',
     averageCompoundedBankAnnualInterestRate: 4.0,
     averageCompoundedInflationAnnualRate: 6.7,
   },
+  ZAR: {
+    symbol: 'R',
+    locale: 'en-ZA',
+    averageCompoundedBankAnnualInterestRate: 6.5, 
+    averageCompoundedInflationAnnualRate: 5.2,
+  },
+  AED: {
+    symbol: 'د.إ',
+    locale: 'ar-AE',
+    averageCompoundedBankAnnualInterestRate: 0.8,
+    averageCompoundedInflationAnnualRate: 1.62,
+  },
   USD: {
     symbol: '$',
+    locale: 'en-US',
     averageCompoundedBankAnnualInterestRate: 0.6,
     averageCompoundedInflationAnnualRate: 3.8,
   },
   GBP: {
     symbol: '£',
+    locale: 'en-GB',
     averageCompoundedBankAnnualInterestRate: 3.5,
     averageCompoundedInflationAnnualRate: 5.2,
   },
-  AED: {
-    symbol: 'د.إ',
-    averageCompoundedBankAnnualInterestRate: 0.8,
-    averageCompoundedInflationAnnualRate: 1.62,
-  },
   CHF: {
     symbol: 'CHF',
+    locale: 'en-CH',
     averageCompoundedBankAnnualInterestRate: 0.8,
     averageCompoundedInflationAnnualRate: 2.4,
-  },
+  }
 }

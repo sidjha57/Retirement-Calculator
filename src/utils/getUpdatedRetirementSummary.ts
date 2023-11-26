@@ -9,7 +9,7 @@ import {
   EstimatedPensionPotRequired,
   EstimatedPensionPotCurrent,
 } from "@utils/retirementSummaryCalculations"
-import { CURRENCIES } from "./constants"
+import { CURRENCIES } from "@utils/constants"
 
 /**
  * Calculates and returns an updated retirement summary based on the provided form data.

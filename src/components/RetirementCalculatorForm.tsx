@@ -7,8 +7,8 @@ import {
   RetirementFormReducerAction,
 } from "../types/userDefinedTypes"
 import { RootState } from "@store/index"
-import { CURRENCIES } from "@utils/constants"
 import { useSelector } from "react-redux"
+import { formattedCurrency } from "@utils/getFormattedCurrency"
 
 const RetirementCalculatorForm = ({
   retirementFormState,
@@ -66,17 +66,14 @@ const RetirementCalculatorForm = ({
           Desired monthly income at retirement
         </label>
         <div className="relative">
-          <span className="absolute inset-y-0 left-0 pl-2 flex items-center">
-          {CURRENCIES[currencyCode as CurrencyCodeType].symbol}
-          </span>
           <input
             type="text"
             id="monthlyIncomeAfterRetirement"
             name="monthlyIncomeAfterRetirement"
-            value={new Intl.NumberFormat('en-IN').format(retirementFormState.monthlyIncomeAfterRetirement)}
+            value={formattedCurrency(currencyCode, retirementFormState.monthlyIncomeAfterRetirement)}
             onChange={handleAmountChange}
             data-type="currency"
-            className="w-full border p-2 rounded-md pl-12"
+            className="w-full border p-2 rounded-md pl-1"
           />
         </div>
         <label className="block text-[10px] my-1" htmlFor="monthlyIncomeAfterRetirement">
@@ -105,14 +102,11 @@ const RetirementCalculatorForm = ({
               type="text"
               id="monthlyPensionContribution"
               name="monthlyPensionContribution"
-              value={new Intl.NumberFormat('en-IN').format(retirementFormState.monthlyPensionContribution)}
+              value={formattedCurrency(currencyCode, retirementFormState.monthlyPensionContribution)}
               onChange={handleAmountChange}
               data-type="currency"
-              className="w-full rounded-md p-1 pl-10"
+              className="w-full rounded-md p-1 pl-1"
             />
-            <span className="absolute inset-y-0 left-0 pl-1 flex items-center">
-              {CURRENCIES[currencyCode as CurrencyCodeType].symbol}
-            </span>
           </div>
 
           <div className="col-start-4 col-span-6 flex items-center">
@@ -142,17 +136,14 @@ const RetirementCalculatorForm = ({
       {/* Current retirement savings input */}
       <div>
         <div className="relative">
-          <span className="absolute inset-y-0 left-0 pl-2 flex items-center">
-            {CURRENCIES[currencyCode as CurrencyCodeType].symbol}
-          </span>
           <input
             type="text"
             id="currentRetirementSavings"
             name="currentRetirementSavings"
-            value={new Intl.NumberFormat('en-IN').format(retirementFormState.currentRetirementSavings)}
+            value={formattedCurrency(currencyCode, retirementFormState.currentRetirementSavings)}
             onChange={handleAmountChange}
             data-type="currency"
-            className="w-full border p-2 rounded-md pl-12"
+            className="w-full border p-2 rounded-md pl-1"
           />
         </div>
       </div>

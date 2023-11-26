@@ -1,7 +1,7 @@
 import { RootState } from "@store/index"
 import { useSelector } from "react-redux"
 import { CurrencyCodeType, RetirementSummaryPropsType } from "../types/userDefinedTypes"
-import { CURRENCIES } from "@utils/constants"
+import { formattedCurrency } from "@utils/getFormattedCurrency"
 
 const RetirementSummary = ({
   headline,
@@ -21,8 +21,7 @@ const RetirementSummary = ({
 
       <div className="grid grid-cols-2">
         <span className="text-3xl">
-          {CURRENCIES[currencyCode as CurrencyCodeType].symbol}{" "}
-          {new Intl.NumberFormat("en-IN", {}).format(retirementFundPerMonth)}
+          {formattedCurrency(currencyCode,retirementFundPerMonth)}
         </span>
         <span className="self-end">per month</span>
       </div>
@@ -31,8 +30,7 @@ const RetirementSummary = ({
         <div>
           <p className="text-sm text-[#79736c]">Estimated pension pot</p>
           <span className="text-xl">
-            {CURRENCIES[currencyCode as CurrencyCodeType].symbol}{" "}
-            {new Intl.NumberFormat("en-IN", {}).format(pensionPot)}
+            {formattedCurrency(currencyCode, pensionPot)}
           </span>
         </div>
         <div>
@@ -40,8 +38,7 @@ const RetirementSummary = ({
             Monthly contribution {monthlyContributionRequired ? "required" : ""}
           </p>
           <span className="text-xl">
-            {CURRENCIES[currencyCode as CurrencyCodeType].symbol}{" "}
-            {new Intl.NumberFormat("en-IN", {}).format(monthlyContribution)}
+            {formattedCurrency(currencyCode, monthlyContribution)}
           </span>
         </div>
       </div>

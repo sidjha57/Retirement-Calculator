@@ -126,10 +126,13 @@ export interface UserType {
   profile: string; 
 }
 
-export type CurrencyCodeType = 'INR' | 'USD' | 'GBP' | 'AED' | 'CHF';
+
+
+export type CurrencyCodeType = 'INR' | 'USD' | 'GBP' | 'AED' | 'CHF' | 'ZAR';
 
 export interface CurrencyInfoType {
-  symbol: '₹' | '$' | '£' | 'د.إ' | 'CHF';
+  symbol: '₹' | '$' | '£' | 'د.إ' | 'CHF' | 'R';
+  locale: 'en-IN' | 'en-US' | 'en-GB' | 'ar-AE' | 'en-CH' | 'en-ZA';
   averageCompoundedBankAnnualInterestRate: number;
   averageCompoundedInflationAnnualRate: number;
 }
