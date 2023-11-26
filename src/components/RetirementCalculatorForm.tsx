@@ -1,40 +1,51 @@
-import React from "react"
-import AgeRangeSlider from "@components/RangeSlider"
-import { Slider } from "@mui/material"
+import React from 'react'
+import AgeRangeSlider from '@components/RangeSlider'
+import { Slider } from '@mui/material'
 import {
   CurrencyCodeType,
   RetirementCalculatorFormPropsType,
   RetirementFormReducerAction,
-} from "../types/userDefinedTypes"
-import { RootState } from "@store/index"
-import { useSelector } from "react-redux"
-import { formattedCurrency } from "@utils/getFormattedCurrency"
+} from '../types/userDefinedTypes'
+import { RootState } from '@store/index'
+import { useSelector } from 'react-redux'
+import { formattedCurrency } from '@utils/getFormattedCurrency'
 
-const RetirementCalculatorForm = ({
-  retirementFormState,
-  dispatch,
-}: RetirementCalculatorFormPropsType) => {
+/**
+ * RetirementCalculatorForm component for collecting user input in retirement planning.
+ * @param {RetirementCalculatorFormPropsType} props - Properties for the RetirementCalculatorForm component.
+ */
+const RetirementCalculatorForm = ({ retirementFormState, dispatch }: RetirementCalculatorFormPropsType) => {
+  // Retrieve the currency code from the Redux store
   const currencyCode: CurrencyCodeType = useSelector((state: RootState) => state.currencyCode.value)
 
-  const handleAmountChange = (
-    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> 
-  ) => {
+  /**
+   * Handle the change event for amount inputs.
+   * @param {React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>} e - The change event.
+   */
+  const handleAmountChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     e.preventDefault()
     dispatch({
       type: RetirementFormReducerAction.UPDATE_AMOUNT,
-      payload: {fieldName: e.target.name, amount: e.target.value}
-    })   
-  }
-
-  const handleSliderChange = (e: Event, newValue: number | number[]) => {
-    console.log(e)
-    console.log(newValue)
-    dispatch({
-      type: RetirementFormReducerAction.UPDATE_SLIDER,
-      payload: newValue 
+      payload: { fieldName: e.target.name, amount: e.target.value },
     })
   }
-   
+
+  /**
+   * Handle the change event for slider inputs.
+   * @param {Event} e - The event object.
+   * @param {number | number[]} newValue - The new value of the slider.
+   */
+  const handleSliderChange = (e: Event, newValue: number | number[]) => {
+    dispatch({
+      type: RetirementFormReducerAction.UPDATE_SLIDER,
+      payload: newValue,
+    })
+  }
+
+  /**
+   * Handle the form submission event.
+   * @param {React.FormEvent} e - The form submission event.
+   */
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
     console.log(retirementFormState)
@@ -54,7 +65,9 @@ const RetirementCalculatorForm = ({
           name="name"
           autoComplete="on"
           value={retirementFormState.name}
-          onChange={(e) => { dispatch({type: RetirementFormReducerAction.UPDATE_NAME, payload: e.target.value}) }}
+          onChange={(e) => {
+            dispatch({ type: RetirementFormReducerAction.UPDATE_NAME, payload: e.target.value })
+          }}
           className="w-full border p-2 rounded-md"
         />
       </div>
@@ -84,9 +97,7 @@ const RetirementCalculatorForm = ({
 
       {/* Your age slider */}
       <div>
-        <span className="block text-sm mb-1">
-          Your age
-        </span>
+        <span className="block text-sm mb-1">Your age</span>
         <AgeRangeSlider yearsLeftToRetirement={retirementFormState.yearsLeftToRetirement} dispatch={dispatch} />
       </div>
       <hr className="bg-[#c4bfb2] h-[1px]" />

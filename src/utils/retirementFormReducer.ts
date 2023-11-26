@@ -72,7 +72,9 @@ import {
         }
       case RetirementFormReducerAction.UPDATE_AMOUNT: {
         const { fieldName, amount } = action.payload
-        const originalNumber = parseFloat(amount.replace(/,/g, ""))
+
+        const originalNumber = parseFloat(amount.replace(/[^0-9.]/g, ""))
+        console.log(originalNumber)
         return {
           ...state,
           [fieldName]: originalNumber,
