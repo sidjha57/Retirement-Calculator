@@ -125,7 +125,7 @@ export type MenuTitleType = EnumKey<typeof MenuTitleEnum>;
 export interface MenuInfoType {
   id: string;
   icon?: string;
-  link: string;
+  link?: string;
   gap?: boolean;
   textColor?: string;
 }

@@ -48,7 +48,7 @@ const Sidebar = () => {
       </div>
       <ul className="pt-4">
         {Object.keys(MENUS).map((title) => (
-          <Link className="link" to={MENUS[title as MenuTitleType].link ? MENUS[title as MenuTitleType].link : "/"} key={MENUS[title as MenuTitleType].id} onClick={() => {setSelectedID(MENUS[title as MenuTitleType].id)}}>
+          <Link className="link" to={MENUS[title as MenuTitleType].link ?? "/"} key={MENUS[title as MenuTitleType].id} onClick={() => {setSelectedID(MENUS[title as MenuTitleType].id)}}>
             <li
               className={`flex rounded-md p-2 cursor-pointer hover:bg-light-white text-gray-300 text-sm items-center gap-x-4 
               ${MENUS[title as MenuTitleType].gap ? "mt-9" : "mt-2"} ${MENUS[title as MenuTitleType].id === selectedID ? "bg-light-white" : ""
