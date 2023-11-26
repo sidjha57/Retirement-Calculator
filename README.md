@@ -2,6 +2,10 @@
 
 This sophisticated application empowers users in meticulously planning their retirement through an intuitive interface, enabling the input of diverse parameters and visualization of anticipated retirement outcomes. Notably, the application supports currency-based differentiation, factoring in the interest rates of the selected country for a location-specific perspective. The entire user interface is configured through a data-driven approach.
 
+
+https://github.com/sidjha57/Retirement-Calculator/assets/62923020/b7b062ef-f2c6-4ca5-9c45-b0b4d5948db3
+
+
 ## Table of Contents
 
 - [Installation](#installation)
